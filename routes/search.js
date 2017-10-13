@@ -23,9 +23,11 @@ router.get('/:term', function(req, res, next) {
 
     console.log(JSON.stringify(response))
 
+    var data = JSON.parse(response.text)
+
 	res.json({
 	  confirmation: 'success',
-	  response: response.text
+	  response: data.results
 	 })  	
   })
 
