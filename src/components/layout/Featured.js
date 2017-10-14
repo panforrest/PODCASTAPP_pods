@@ -6,7 +6,7 @@
    //   </div>
    // )
 import React, { Component } from 'react'
-import { Footer, Nav, Search } from '../presentation'
+import { Footer, Nav} from '../presentation'
 import { Podcasts, Playlist } from '../containers'
 
 class Featured extends Component {
@@ -16,7 +16,6 @@ class Featured extends Component {
       <div id="content" className="main animated fadein">        
 
         <Playlist />
-        <Search />
 
         <div className="animated fadeinup delay-1">
           <Podcasts />          
