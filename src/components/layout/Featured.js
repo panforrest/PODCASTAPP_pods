@@ -6,9 +6,8 @@
    //   </div>
    // )
 import React, { Component } from 'react'
-import Footer from './Footer'
-import Nav from './Nav'
-import Podcasts from './Podcasts'
+import { Footer, Nav } from '../presentation'
+import { Podcasts } from '../containers'
 
 class Featured extends Component {
   render(){
