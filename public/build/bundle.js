@@ -21278,28 +21278,8 @@ var Featured = function (_Component) {
         _react2.default.createElement(
           'div',
           { id: 'content', className: 'main animated fadein' },
-          _react2.default.createElement(
-            'div',
-            { className: 'hero-header bg-shop animated fadeindown' },
-            _react2.default.createElement(
-              'h1',
-              { className: 'hero-title' },
-              'Shop'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'form-inputs p-20' },
-            _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'div',
-                { className: 'input-field animated fadeinright' },
-                _react2.default.createElement('input', { placeholder: 'Search...', type: 'text', className: 'validate' })
-              )
-            )
-          ),
+          _react2.default.createElement(_containers.Playlist, null),
+          _react2.default.createElement(_presentation.Search, null),
           _react2.default.createElement(
             'div',
             { className: 'animated fadeinup delay-1' },
@@ -21328,7 +21308,7 @@ exports.default = Featured;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Nav = exports.Footer = undefined;
+exports.Search = exports.Nav = exports.Footer = undefined;
 
 var _Footer = __webpack_require__(36);
 
@@ -21338,10 +21318,15 @@ var _Nav = __webpack_require__(37);
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
+var _Search = __webpack_require__(40);
+
+var _Search2 = _interopRequireDefault(_Search);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Footer = _Footer2.default;
 exports.Nav = _Nav2.default;
+exports.Search = _Search2.default;
 
 /***/ }),
 /* 36 */
@@ -21502,15 +21487,20 @@ exports.default = function (props) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Podcasts = undefined;
+exports.Playlist = exports.Podcasts = undefined;
 
 var _Podcasts = __webpack_require__(39);
 
 var _Podcasts2 = _interopRequireDefault(_Podcasts);
 
+var _Playlist = __webpack_require__(41);
+
+var _Playlist2 = _interopRequireDefault(_Playlist);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Podcasts = _Podcasts2.default;
+exports.Playlist = _Playlist2.default;
 
 /***/ }),
 /* 39 */
@@ -21668,6 +21658,93 @@ var Podcasts = function (_Component) {
 }(_react.Component);
 
 exports.default = Podcasts;
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "form-inputs p-20" },
+    _react2.default.createElement(
+      "div",
+      null,
+      _react2.default.createElement(
+        "div",
+        { className: "input-field animated fadeinright" },
+        _react2.default.createElement("input", { placeholder: "Search...", type: "text", className: "validate" })
+      )
+    )
+  );
+};
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Playlist = function (_Component) {
+  _inherits(Playlist, _Component);
+
+  function Playlist() {
+    _classCallCheck(this, Playlist);
+
+    return _possibleConstructorReturn(this, (Playlist.__proto__ || Object.getPrototypeOf(Playlist)).apply(this, arguments));
+  }
+
+  _createClass(Playlist, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "hero-header bg-shop animated fadeindown" },
+        _react2.default.createElement(
+          "h1",
+          { className: "hero-title" },
+          "Play"
+        )
+      );
+    }
+  }]);
+
+  return Playlist;
+}(_react.Component);
+
+exports.default = Playlist;
 
 /***/ })
 /******/ ]);
