@@ -457,6 +457,21 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(16);
+} else {
+  module.exports = __webpack_require__(17);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -477,7 +492,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -546,21 +561,6 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(16);
-} else {
-  module.exports = __webpack_require__(17);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -576,7 +576,7 @@ if (process.env.NODE_ENV === 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(2);
-  var warning = __webpack_require__(5);
+  var warning = __webpack_require__(6);
   var ReactPropTypesSecret = __webpack_require__(8);
   var loggedTypeFailures = {};
 }
@@ -961,13 +961,15 @@ module.exports = getActiveElement;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(6);
+var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _components = __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -992,7 +994,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'This is React'
+        _react2.default.createElement(_components.Featured, null)
       );
     }
   }]);
@@ -1016,7 +1018,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(3),p=__webpack_require__(4);__webpack_require__(2);var r=__webpack_require__(1);
+var f=__webpack_require__(3),p=__webpack_require__(5);__webpack_require__(2);var r=__webpack_require__(1);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -1054,8 +1056,8 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var objectAssign$1 = __webpack_require__(3);
-var require$$0 = __webpack_require__(5);
-var emptyObject = __webpack_require__(4);
+var require$$0 = __webpack_require__(6);
+var emptyObject = __webpack_require__(5);
 var invariant = __webpack_require__(2);
 var emptyFunction = __webpack_require__(1);
 var checkPropTypes = __webpack_require__(7);
@@ -2799,7 +2801,7 @@ if (process.env.NODE_ENV === 'production') {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(6);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(3),ba=__webpack_require__(10),ca=__webpack_require__(1),da=__webpack_require__(4),ea=__webpack_require__(11),fa=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14);
+var aa=__webpack_require__(4);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(3),ba=__webpack_require__(10),ca=__webpack_require__(1),da=__webpack_require__(5),ea=__webpack_require__(11),fa=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -3124,18 +3126,18 @@ if (process.env.NODE_ENV !== "production") {
 
 'use strict';
 
-var react = __webpack_require__(6);
+var react = __webpack_require__(4);
 var invariant = __webpack_require__(2);
 var ExecutionEnvironment = __webpack_require__(9);
 var _assign = __webpack_require__(3);
 var EventListener = __webpack_require__(10);
-var require$$0 = __webpack_require__(5);
+var require$$0 = __webpack_require__(6);
 var hyphenateStyleName = __webpack_require__(23);
 var emptyFunction = __webpack_require__(1);
 var camelizeStyleName = __webpack_require__(25);
 var performanceNow = __webpack_require__(27);
 var propTypes = __webpack_require__(29);
-var emptyObject = __webpack_require__(4);
+var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
 var shallowEqual = __webpack_require__(11);
 var containsNode = __webpack_require__(12);
@@ -20602,7 +20604,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyFunction = __webpack_require__(1);
 var invariant = __webpack_require__(2);
-var warning = __webpack_require__(5);
+var warning = __webpack_require__(6);
 var assign = __webpack_require__(3);
 
 var ReactPropTypesSecret = __webpack_require__(8);
@@ -21200,6 +21202,616 @@ module.exports = function() {
   return ReactPropTypes;
 };
 
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Featured = undefined;
+
+var _Featured = __webpack_require__(33);
+
+var _Featured2 = _interopRequireDefault(_Featured);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Featured = _Featured2.default;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Featured = function (_Component) {
+  _inherits(Featured, _Component);
+
+  function Featured() {
+    _classCallCheck(this, Featured);
+
+    return _possibleConstructorReturn(this, (Featured.__proto__ || Object.getPrototypeOf(Featured)).apply(this, arguments));
+  }
+
+  _createClass(Featured, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { id: "main" },
+        _react2.default.createElement(
+          "div",
+          { id: "content", className: "main animated fadein" },
+          _react2.default.createElement(
+            "div",
+            { className: "hero-header bg-shop animated fadeindown" },
+            _react2.default.createElement(
+              "h1",
+              { className: "hero-title" },
+              "Shop"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "animated fadeinup delay-1" },
+            _react2.default.createElement(
+              "div",
+              { className: "shop-banner animated fadeinup delay-1" },
+              _react2.default.createElement(
+                "a",
+                { href: "category.html" },
+                _react2.default.createElement("img", { src: "img/banner1.jpg", alt: "" }),
+                _react2.default.createElement(
+                  "div",
+                  { className: "opacity-overlay valign-wrapper" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "valign center width-100" },
+                    _react2.default.createElement(
+                      "h3",
+                      { className: "white-text" },
+                      "New Arrivals"
+                    ),
+                    _react2.default.createElement(
+                      "p",
+                      { className: "white-text" },
+                      "SS 2016"
+                    )
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "shop-banner animated fadeinup delay-2" },
+              _react2.default.createElement(
+                "a",
+                { href: "category.html" },
+                _react2.default.createElement("img", { src: "img/banner2.jpg", alt: "" }),
+                _react2.default.createElement(
+                  "div",
+                  { className: "opacity-overlay valign-wrapper" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "valign center width-100" },
+                    _react2.default.createElement(
+                      "h3",
+                      { className: "white-text" },
+                      "Accessories"
+                    ),
+                    _react2.default.createElement(
+                      "p",
+                      { className: "white-text" },
+                      "Watches 2016"
+                    )
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "shop-banner animated fadeinup delay-3" },
+              _react2.default.createElement(
+                "a",
+                { href: "category.html" },
+                _react2.default.createElement("img", { src: "img/banner3.jpg", alt: "" }),
+                _react2.default.createElement(
+                  "div",
+                  { className: "opacity-overlay valign-wrapper" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "valign center width-100" },
+                    _react2.default.createElement(
+                      "h3",
+                      { className: "white-text" },
+                      "Shoes"
+                    ),
+                    _react2.default.createElement(
+                      "p",
+                      { className: "white-text" },
+                      "50% Sales"
+                    )
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "shop-banner-full animated fadeinup delay-3" },
+              _react2.default.createElement(
+                "a",
+                { href: "category.html" },
+                _react2.default.createElement("img", { src: "img/banner4.jpg", alt: "" }),
+                _react2.default.createElement(
+                  "div",
+                  { className: "opacity-overlay valign-wrapper" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "valign center width-100" },
+                    _react2.default.createElement(
+                      "h3",
+                      { className: "white-text" },
+                      "Sale"
+                    ),
+                    _react2.default.createElement(
+                      "p",
+                      { className: "white-text" },
+                      "50% - 70%"
+                    )
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement("div", { className: "clr" })
+          ),
+          _react2.default.createElement(
+            "footer",
+            { className: "page-footer primary-color" },
+            _react2.default.createElement(
+              "div",
+              { className: "container" },
+              _react2.default.createElement(
+                "div",
+                { className: "row" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "col s12" },
+                  _react2.default.createElement(
+                    "p",
+                    { className: "center-align grey-text text-lighten-4" },
+                    "You can use rows and columns here to organize your footer content."
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "center-align" },
+                    _react2.default.createElement("i", { className: "ion-social-facebook m-10 white-text" }),
+                    _react2.default.createElement("i", { className: "ion-social-twitter m-10 white-text" }),
+                    _react2.default.createElement("i", { className: "ion-social-pinterest m-10 white-text" }),
+                    _react2.default.createElement("i", { className: "ion-social-dribbble m-10 white-text" })
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement("div", { className: "line white" }),
+            _react2.default.createElement(
+              "div",
+              { className: "footer-copyright primary-color" },
+              _react2.default.createElement(
+                "div",
+                { className: "container" },
+                "2016 Codnauts",
+                _react2.default.createElement(
+                  "a",
+                  { className: "grey-text text-lighten-4 right", href: "#!" },
+                  "Privacy Policy"
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "menu-trigger z-depth-2" },
+          _react2.default.createElement(
+            "div",
+            { id: "menu-icon" },
+            _react2.default.createElement("span", null),
+            _react2.default.createElement("span", null),
+            _react2.default.createElement("span", null),
+            _react2.default.createElement("span", null)
+          )
+        ),
+        _react2.default.createElement(
+          "nav",
+          { id: "menu", className: "menu" },
+          _react2.default.createElement(
+            "div",
+            { className: "menu-navigation" },
+            _react2.default.createElement(
+              "ul",
+              { className: "full-menu collapsible" },
+              _react2.default.createElement(
+                "li",
+                { className: "menu-title" },
+                "Eclipse"
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-header" },
+                  "Home"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-body" },
+                  _react2.default.createElement(
+                    "ul",
+                    { className: "collapsible" },
+                    _react2.default.createElement(
+                      "li",
+                      null,
+                      _react2.default.createElement(
+                        "a",
+                        { href: "index.html" },
+                        "Classic"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "index-sliced.html" },
+                        "Sliced"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "index-slider.html" },
+                        "Slider"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "index-drawer.html" },
+                        "Drawer"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "index-walkthrough.html" },
+                        "Walkthrough"
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-header" },
+                  "Pages"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-body" },
+                  _react2.default.createElement(
+                    "ul",
+                    { className: "collapsible" },
+                    _react2.default.createElement(
+                      "li",
+                      null,
+                      _react2.default.createElement(
+                        "a",
+                        { href: "profile.html" },
+                        "Profile"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "article.html" },
+                        "Article"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "event.html" },
+                        "Event"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "project.html" },
+                        "Project"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "player.html" },
+                        "Music Player"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "todo.html" },
+                        "ToDo"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "category.html" },
+                        "Category"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "product.html" },
+                        "Product"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "checkout.html" },
+                        "Checkout"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "search.html" },
+                        "Search"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "faq.html" },
+                        "Faq"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "coming-soon.html" },
+                        "Coming Soon"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "404.html" },
+                        "404"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "500.html" },
+                        "500"
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-header" },
+                  "App"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-body" },
+                  _react2.default.createElement(
+                    "ul",
+                    { className: "collapsible" },
+                    _react2.default.createElement(
+                      "li",
+                      null,
+                      _react2.default.createElement(
+                        "a",
+                        { href: "calendar.html" },
+                        "Calendar"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "chat.html" },
+                        "Chat"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "chart.html" },
+                        "Chart"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "timeline.html" },
+                        "Timeline"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "login.html" },
+                        "Login"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "signup.html" },
+                        "Sign Up"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "lockscreen.html" },
+                        "Lockscreen"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "forgot.html" },
+                        "Password"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "notification.html" },
+                        "Notification"
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-header" },
+                  "Portfolio"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-body" },
+                  _react2.default.createElement(
+                    "ul",
+                    { className: "collapsible" },
+                    _react2.default.createElement(
+                      "li",
+                      null,
+                      _react2.default.createElement(
+                        "a",
+                        { href: "portfolio-filter.html" },
+                        "Filter"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "portfolio-masonry.html" },
+                        "Masonry"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "portfolio-card.html" },
+                        "Card"
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-header" },
+                  "Blog"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-body" },
+                  _react2.default.createElement(
+                    "ul",
+                    { className: "collapsible" },
+                    _react2.default.createElement(
+                      "li",
+                      null,
+                      _react2.default.createElement(
+                        "a",
+                        { href: "blog.html" },
+                        "Classic"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "blog2.html" },
+                        "Card"
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-header" },
+                  "Gallery"
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "collapsible-body" },
+                  _react2.default.createElement(
+                    "ul",
+                    { className: "collapsible" },
+                    _react2.default.createElement(
+                      "li",
+                      null,
+                      _react2.default.createElement(
+                        "a",
+                        { href: "gallery-filter.html" },
+                        "Filter"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "gallery-masonry.html" },
+                        "Masonry"
+                      ),
+                      _react2.default.createElement(
+                        "a",
+                        { href: "gallery-card.html" },
+                        "Card"
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "shop.html", className: "no-child" },
+                  "Shop"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "news.html", className: "no-child" },
+                  "News"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "video.html", className: "no-child" },
+                  "Video"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "contact.html", className: "no-child" },
+                  "Contact"
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Featured;
+}(_react.Component);
+
+exports.default = Featured;
 
 /***/ })
 /******/ ]);
