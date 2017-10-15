@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Search } from '../presentation'
-import superagent from 'superagent'
+// import superagent from 'superagent'
+import { APIClient } from '../../utils'
 
 class Playlist extends Component {
 
@@ -9,21 +10,29 @@ class Playlist extends Component {
       return
 
     console.log('searchPosdcasts: '+event.target.value)//NOT console.log('searchPosdcasts: '+event.keyCode)
-    var url = 'http://localhost:3000/search/' + event.target.value
-    console.log('url: '+url)
+    var endpoint = '/search/' + event.target.value
+    // console.log('url: '+url)
 
-    superagent
-    .get(url)
-    .query(null)
-    // .set('Accept', 'json/application')
-    .end((err, data) => {  //THE ORDER OF err, data SHOULD NOT SWITCH
-      	if (err) {
-      	  alert(err)
-      	  return
-      	}
-      	console.log(JSON.stringify(data.body))
-      })
-
+    // superagent
+    // .get(url)
+    // .query(null)
+    // // .set('Accept', 'json/application')
+    // .end((err, data) => {  //THE ORDER OF err, data SHOULD NOT SWITCH
+    //   if (err) {
+    //  	alert(err)
+    //   	return
+    //    }
+    //    console.log(JSON.stringify(data.body))
+    // })
+    APIClient
+    // .get('http://localhost:3000/search/sports')
+    .get(endpoint, null)
+    .then((response) => {
+      console.log(JSON.stringify(response))
+    })
+    .catch((err) => {
+      alert(err)
+    })
   }
 
   render(){
