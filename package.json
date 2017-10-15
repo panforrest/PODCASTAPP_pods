@@ -19,6 +19,9 @@
     "morgan": "~1.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "serve-favicon": "~2.3.0",
     "superagent": "^3.6.3",
     "webpack": "^3.7.1"
