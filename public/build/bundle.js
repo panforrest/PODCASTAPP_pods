@@ -22640,6 +22640,12 @@ var _presentation = __webpack_require__(19);
 
 var _utils = __webpack_require__(54);
 
+var _reactRedux = __webpack_require__(65);
+
+var _actions = __webpack_require__(97);
+
+var _actions2 = _interopRequireDefault(_actions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22662,9 +22668,11 @@ var Playlist = function (_Component) {
   _createClass(Playlist, [{
     key: 'searchPodcasts',
     value: function searchPodcasts(event) {
+      var _this2 = this;
+
       if (event.keyCode != 13) return;
 
-      console.log('searchPosdcasts: ' + event.target.value); //NOT console.log('searchPosdcasts: '+event.keyCode)
+      console.log('searchPodcasts: ' + event.target.value); //NOT console.log('searchPosdcasts: '+event.keyCode)
       var endpoint = '/search/' + event.target.value;
       // console.log('url: '+url)
 
@@ -22682,7 +22690,8 @@ var Playlist = function (_Component) {
       _utils.APIClient
       // .get('http://localhost:3000/search/sports')
       .get(endpoint, null).then(function (response) {
-        console.log(JSON.stringify(response));
+        // console.log(JSON.stringify(response))
+        _this2.props.podcastsReceived(response.response);
       }).catch(function (err) {
         alert(err);
       });
@@ -22711,7 +22720,19 @@ var Playlist = function (_Component) {
   return Playlist;
 }(_react.Component);
 
-exports.default = Playlist;
+var stateToProps = function stateToProps(state) {
+  return {};
+};
+
+var dispatchToProps = function dispatchToProps(dispatch) {
+  return {
+    podcastsReceived: function podcastsReceived(podcasts) {
+      return dispatch(_actions2.default.podcastsReceived(podcasts));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Playlist);
 
 /***/ }),
 /* 54 */
@@ -32046,6 +32067,37 @@ exports.default = {
   SEARCH_PODCASTS: 'SEARCH_PODCASTS',
   PODCASTS_RECEIVED: 'PODCASTS_RECEIVED'
 
+};
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _constants = __webpack_require__(96);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+  searchPodcasts: function searchPodcasts(params) {
+    console.log('searchPodcasts: ' + JSON.stringigy(params));
+  },
+
+  podcastsReceived: function podcastsReceived(podcasts) {
+    return {
+      type: _constants2.default.PODCASTS_RECEIVED,
+      podcasts: podcasts
+    };
+  }
 };
 
 /***/ })

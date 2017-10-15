@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Search } from '../presentation'
 // import superagent from 'superagent'
 import { APIClient } from '../../utils'
+import { connect } from 'react-redux'
+import actions from '../../actions'
 
 class Playlist extends Component {
 
@@ -9,7 +11,7 @@ class Playlist extends Component {
     if (event.keyCode != 13)
       return
 
-    console.log('searchPosdcasts: '+event.target.value)//NOT console.log('searchPosdcasts: '+event.keyCode)
+    console.log('searchPodcasts: '+event.target.value)//NOT console.log('searchPosdcasts: '+event.keyCode)
     var endpoint = '/search/' + event.target.value
     // console.log('url: '+url)
 
@@ -28,7 +30,8 @@ class Playlist extends Component {
     // .get('http://localhost:3000/search/sports')
     .get(endpoint, null)
     .then((response) => {
-      console.log(JSON.stringify(response))
+      // console.log(JSON.stringify(response))
+      this.props.podcastsReceived(response.response)
     })
     .catch((err) => {
       alert(err)
@@ -48,4 +51,16 @@ class Playlist extends Component {
   }
 }
 
-export default Playlist
+const stateToProps = (state) => {
+  return {
+
+  }
+}
+
+const dispatchToProps = (dispatch) => {
+  return {
+    podcastsReceived: (podcasts) => dispatch(actions.podcastsReceived(podcasts))
+  }
+}
+
+export default connect(stateToProps, dispatchToProps)(Playlist)

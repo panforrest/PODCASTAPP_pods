@@ -3,7 +3,7 @@ import constants from '../constants'
 export default {
     
   searchPodcasts: (params) => {
-    console.log('searchPodcasts: 'JSON.stringigy(params))
+    console.log('searchPodcasts: ' + JSON.stringigy(params))
   },
 
   podcastsReceived: (podcasts) =>{
