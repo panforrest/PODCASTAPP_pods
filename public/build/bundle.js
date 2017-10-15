@@ -22631,27 +22631,19 @@ var Podcasts = function (_Component) {
     key: 'render',
     value: function render() {
 
-      var pods = this.props.podcasts.all == null ? null : this.props.podcasts.all.map(function (podcast, i) {
-        return _react2.default.createElement(
-          'li',
-          { key: podcast.trackId },
-          podcast.artistName
-        );
-      });
+      var list = this.props.podcasts.all || [];
 
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'ul',
-          null,
-          _react2.default.createElement(
+        list.map(function (podcast, i) {
+          return _react2.default.createElement(
             'div',
-            { className: 'shop-banner animated fadeinup delay-2' },
+            { key: podcast.trackId, className: 'shop-banner animated fadeinup delay-2' },
             _react2.default.createElement(
               'a',
-              { href: 'category.html' },
-              _react2.default.createElement('img', { src: 'img/banner2.jpg', alt: '' }),
+              { href: '#' },
+              _react2.default.createElement('img', { src: podcast.artworkUrl60, alt: '' }),
               _react2.default.createElement(
                 'div',
                 { className: 'opacity-overlay valign-wrapper' },
@@ -22661,18 +22653,18 @@ var Podcasts = function (_Component) {
                   _react2.default.createElement(
                     'h3',
                     { className: 'white-text' },
-                    pods
+                    podcast.artistName
                   ),
                   _react2.default.createElement(
                     'p',
                     { className: 'white-text' },
-                    'Watches 2016'
+                    podcast.collectionName
                   )
                 )
               )
             )
-          )
-        )
+          );
+        })
       );
     }
   }]);
@@ -22686,15 +22678,7 @@ var stateToProps = function stateToProps(state) {
   };
 };
 
-var dispatchToProps = function dispatchToProps(dispatch) {
-  return {
-    podcastsReceived: function podcastsReceived(podcasts) {
-      return dispatch(_actions2.default.podcastsReceived(podcasts));
-    }
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Podcasts);
+exports.default = (0, _reactRedux.connect)(stateToProps)(Podcasts);
 
 /***/ }),
 /* 56 */

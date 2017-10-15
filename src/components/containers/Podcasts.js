@@ -67,30 +67,26 @@ class Podcasts extends Component {
 
   render(){
 
-    const pods = (this.props.podcasts.all == null) ? null : 
-      (this.props.podcasts.all.map((podcast, i) => {
-        return(
-          <li key={podcast.trackId}>{podcast.artistName}</li>
-        )
-      })) 
+    const list = this.props.podcasts.all || []
 
 
   	return(
       <div>
-       <ul>
-        <div className="shop-banner animated fadeinup delay-2">
-          <a href="category.html">
-            <img src="img/banner2.jpg" alt="" />
-            <div className="opacity-overlay valign-wrapper">
-              <div className="valign center width-100">
-                <h3 className="white-text">{pods}</h3>
-                <p className="white-text">Watches 2016</p>
-              </div>
+        { list.map((podcast, i) => {
+            return <div key={podcast.trackId} className="shop-banner animated fadeinup delay-2">
+              <a href="#">
+                <img src={podcast.artworkUrl60} alt="" />
+                <div className="opacity-overlay valign-wrapper">
+                  <div className="valign center width-100">
+                    <h3 className="white-text">{podcast.artistName}</h3>
+                    <p className="white-text">{podcast.collectionName}</p>
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
-       </ul> 
-      </div>  
+          })
+        }
+      </div>   
   	)
   }
 }
@@ -101,10 +97,5 @@ const stateToProps = (state) => {
   }
 }
 
-const dispatchToProps = (dispatch) => {
-  return {
-    podcastsReceived: (podcasts) => dispatch(actions.podcastsReceived(podcasts))
-  }
-}
 
-export default connect(stateToProps, dispatchToProps)(Podcasts)
+export default connect(stateToProps)(Podcasts)
