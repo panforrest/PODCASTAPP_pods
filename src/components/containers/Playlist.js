@@ -1,11 +1,79 @@
+// <div className="section center">
+//           <h4 className="m-0"><strong>Mobile Coded</strong></h4>
+//           <div className="line"></div>
+          
+//           <p className="text-flow m-0">Create a mobile expirience that you are gonna be proud of. With Eclipse you can create Mobile Websites and Apps.</p>
+//         </div> 
 import React, { Component } from 'react'
 import { Search } from '../presentation'
 // import superagent from 'superagent'
 import { APIClient } from '../../utils'
 import { connect } from 'react-redux'
 import actions from '../../actions'
+import APlayer from 'aplayer'
 
 class Playlist extends Component {
+  componentDidMount(){
+
+    var ap1 = new APlayer({
+        element: document.getElementById('player1'),
+        narrow: false,
+        autoplay: true,
+        showlrc: false,
+        mutex: true,
+        theme: '#e6d0b2',
+        preload: 'metadata',
+        mode: 'circulation',
+        music: [
+           {
+            title: 'Preparation',
+            author: 'Hans Zimmer/Richard Harvey',
+            url: 'http://devtest.qiniudn.com/Preparation.mp3',
+            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
+          },
+          {
+            title: 'Preparation',
+            author: 'Hans Zimmer/Richard Harvey',
+            url: 'http://devtest.qiniudn.com/Preparation.mp3',
+            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
+          },
+          {
+            title: 'Preparation',
+            author: 'Hans Zimmer/Richard Harvey',
+            url: 'http://devtest.qiniudn.com/Preparation.mp3',
+            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
+          },
+          {
+            title: 'Preparation',
+            author: 'Hans Zimmer/Richard Harvey',
+            url: 'http://devtest.qiniudn.com/Preparation.mp3',
+            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
+          }
+        ]
+
+    });
+    // ap1.on('play', function () {
+    //     console.log('play');
+    // });
+    // ap1.on('play', function () {
+    //     console.log('play play');
+    // });
+    // ap1.on('pause', function () {
+    //     console.log('pause');
+    // });
+    // ap1.on('canplay', function () {
+    //     console.log('canplay');
+    // });
+    // ap1.on('playing', function () {
+    //     console.log('playing');
+    // });
+    // ap1.on('ended', function () {
+    //     console.log('ended');
+    // });
+    // ap1.on('error', function () {
+    //     console.log('error');
+    // });    
+  }
 
   searchPodcasts(event){
     if (event.keyCode != 13)
@@ -42,11 +110,14 @@ class Playlist extends Component {
 
   	return(
   	  <div>	
-	  	<div className="hero-header bg-shop animated fadeindown">
-	      <h1 className="hero-title">Play</h1>
-	    </div>
-	    <Search onSearch={this.searchPodcasts.bind(this)}/> 
-	  </div>    
+	  	  <div style={{paddingTop:64}}className="hero-header bg-shop animated fadeindown">
+          <div className="p-20 animated fadeinup delay-1">
+            <div style={{background:'#fff'}} id="player1" className="aplayer"></div>  
+          </div>
+        </div> 
+
+  	    <Search onSearch={this.searchPodcasts.bind(this)}/> 
+	    </div>    
   	)
   }
 }
