@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var superagent = require('superagent')
 
+var xml2js = require('xml2js')
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   // var term = req.params.term
@@ -28,15 +30,13 @@ router.get('/', function(req, res, next) {
       return
     }
 
-    // console.log(JSON.stringify(response))
-    res.send(response.text)
+    var xml = response.text
+    xml2js.parseString(xml, function(err, result){
+      // console.log(result)
+      res.json(result) 
+    })
 
- //    var data = JSON.parse(response.text)
-
-	// res.json({
-	//   confirmation: 'success',
-	//   response: data.results
-	//  })  	
+    // res.send(response.text) 	
   })
 });
 
