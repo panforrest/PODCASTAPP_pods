@@ -44,12 +44,12 @@ class Playlist extends Component {
             url: 'http://devtest.qiniudn.com/Preparation.mp3',
             pic: 'http://devtest.qiniudn.com/Preparation.jpg'
           },
-          {
-            title: 'Preparation',
-            author: 'Hans Zimmer/Richard Harvey',
-            url: feedUrl,
-            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-          }
+          // {
+          //   title: 'Preparation',
+          //   author: 'Hans Zimmer/Richard Harvey',
+          //   url: feedUrl,
+          //   pic: 'http://devtest.qiniudn.com/Preparation.jpg'
+          // }
         ]
 
     });
@@ -107,6 +107,10 @@ class Playlist extends Component {
     })
   }
 
+  componentDidUpdate(){
+    console.log('componentDidUpdate: ' + JSON.stringify(this.props.podcasts.selected))
+  }
+
   render(){
 
   	return(
@@ -125,7 +129,7 @@ class Playlist extends Component {
 
 const stateToProps = (state) => {
   return {
-    podcast: state.podcast.selected
+    podcasts: state.podcast
   }
 }
 

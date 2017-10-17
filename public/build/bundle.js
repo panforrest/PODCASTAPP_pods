@@ -24021,11 +24021,6 @@ var Playlist = function (_Component) {
           author: 'Hans Zimmer/Richard Harvey',
           url: 'http://devtest.qiniudn.com/Preparation.mp3',
           pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-        }, {
-          title: 'Preparation',
-          author: 'Hans Zimmer/Richard Harvey',
-          url: feedUrl,
-          pic: 'http://devtest.qiniudn.com/Preparation.jpg'
         }]
 
       });
@@ -24083,6 +24078,11 @@ var Playlist = function (_Component) {
       });
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      console.log('componentDidUpdate: ' + JSON.stringify(this.props.podcasts.selected));
+    }
+  }, {
     key: 'render',
     value: function render() {
 
@@ -24108,7 +24108,7 @@ var Playlist = function (_Component) {
 
 var stateToProps = function stateToProps(state) {
   return {
-    podcast: state.podcast.selected
+    podcasts: state.podcast
   };
 };
 
@@ -32139,12 +32139,19 @@ exports.default = function () {
   var updated = Object.assign({}, state);
   switch (action.type) {
     case _constants2.default.PODCASTS_RECEIVED:
-      console.log('PODCASTS_RECEIVED:' + JSON.stringify(action.podcasts));
+      // console.log('PODCASTS_RECEIVED:' + JSON.stringify(action.podcasts))
       updated['all'] = action.podcasts;
       return updated;
 
     case _constants2.default.PODCAST_SELECTED:
-      console.log('PODCAST_SELECTED: ' + JSON.stringify(action.podcast));
+      // console.log('PODCAST_SELECTED: ' + JSON.stringify(action.podcast))
+      if (updated.selected != null) {
+        //if (state.selected != null){
+        if (updated.selected.collectionId == action.podcast.collectionId) {
+          return state;
+        }
+      }
+
       updated['selected'] = action.podcast;
       return updated;
 
