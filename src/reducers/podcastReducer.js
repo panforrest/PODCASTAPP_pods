@@ -1,7 +1,8 @@
 import constants from '../constants'
 
 var initialState = {
-  all: null
+  all: null,
+  selected: null
 }
 
 export default (state=initialState, action) => {
@@ -11,6 +12,11 @@ export default (state=initialState, action) => {
       console.log('PODCASTS_RECEIVED:' + JSON.stringify(action.podcasts))
       updated['all'] = action.podcasts
       return updated
+
+    case constants.PODCAST_SELECTED: 
+      console.log('PODCAST_SELECTED: ' + JSON.stringify(action.podcast))
+      updated['selected'] = action.podcast
+      return updated 
 
     default:
       return state

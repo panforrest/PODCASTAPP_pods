@@ -14,6 +14,7 @@ import APlayer from 'aplayer'
 
 class Playlist extends Component {
   componentDidMount(){
+    const feedUrl = this.props.podcast || []
 
     var ap1 = new APlayer({
         element: document.getElementById('player1'),
@@ -46,7 +47,7 @@ class Playlist extends Component {
           {
             title: 'Preparation',
             author: 'Hans Zimmer/Richard Harvey',
-            url: 'http://devtest.qiniudn.com/Preparation.mp3',
+            url: feedUrl,
             pic: 'http://devtest.qiniudn.com/Preparation.jpg'
           }
         ]
@@ -124,7 +125,7 @@ class Playlist extends Component {
 
 const stateToProps = (state) => {
   return {
-
+    podcast: state.podcast.selected
   }
 }
 

@@ -1992,6 +1992,13 @@ exports.default = {
       type: _constants2.default.PODCASTS_RECEIVED,
       podcasts: podcasts
     };
+  },
+
+  podcastSelected: function podcastSelected(podcast) {
+    return {
+      type: _constants2.default.PODCAST_SELECTED,
+      podcast: podcast
+    };
   }
 };
 
@@ -2008,7 +2015,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
 
   SEARCH_PODCASTS: 'SEARCH_PODCASTS',
-  PODCASTS_RECEIVED: 'PODCASTS_RECEIVED'
+  PODCASTS_RECEIVED: 'PODCASTS_RECEIVED',
+  PODCAST_SELECTED: 'PODCAST_SELECTED'
 
 };
 
@@ -22558,7 +22566,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // <a onClick={this.selectPodcast.bind(this, "podcast")} href="#"> //WRONG
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // <a onClick={this.selectPodcast.bind(this, "podcast")} href="#"> //WRONG!!!
 
 
 var Podcasts = function (_Component) {
@@ -22574,7 +22582,8 @@ var Podcasts = function (_Component) {
     key: 'selectPodcast',
     value: function selectPodcast(podcast, event) {
       // console.log('selectPodcast: '+JSON.stringify(this.props.podcast))
-      console.log('selectPodcast: ' + JSON.stringify(podcast));
+      // console.log('selectPodcast: '+JSON.stringify(podcast))
+      this.props.podcastSelected(podcast);
     }
   }, {
     key: 'render',
@@ -22627,7 +22636,15 @@ var stateToProps = function stateToProps(state) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(stateToProps)(Podcasts);
+var dispatchToProps = function dispatchToProps(dispatch) {
+  return {
+    podcastSelected: function podcastSelected(podcast) {
+      return dispatch(_actions2.default.podcastSelected(podcast));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Podcasts);
 
 /***/ }),
 /* 56 */
@@ -23978,6 +23995,7 @@ var Playlist = function (_Component) {
   _createClass(Playlist, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var feedUrl = this.props.podcast || [];
 
       var ap1 = new _aplayer2.default({
         element: document.getElementById('player1'),
@@ -24006,7 +24024,7 @@ var Playlist = function (_Component) {
         }, {
           title: 'Preparation',
           author: 'Hans Zimmer/Richard Harvey',
-          url: 'http://devtest.qiniudn.com/Preparation.mp3',
+          url: feedUrl,
           pic: 'http://devtest.qiniudn.com/Preparation.jpg'
         }]
 
@@ -24089,7 +24107,9 @@ var Playlist = function (_Component) {
 }(_react.Component);
 
 var stateToProps = function stateToProps(state) {
-  return {};
+  return {
+    podcast: state.podcast.selected
+  };
 };
 
 var dispatchToProps = function dispatchToProps(dispatch) {
@@ -32108,7 +32128,8 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var initialState = {
-  all: null
+  all: null,
+  selected: null
 };
 
 exports.default = function () {
@@ -32120,6 +32141,11 @@ exports.default = function () {
     case _constants2.default.PODCASTS_RECEIVED:
       console.log('PODCASTS_RECEIVED:' + JSON.stringify(action.podcasts));
       updated['all'] = action.podcasts;
+      return updated;
+
+    case _constants2.default.PODCAST_SELECTED:
+      console.log('PODCAST_SELECTED: ' + JSON.stringify(action.podcast));
+      updated['selected'] = action.podcast;
       return updated;
 
     default:
