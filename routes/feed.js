@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
     }
 
     // console.log(JSON.stringify(response))
-    res.send(response)
+    res.send(response.text)
 
  //    var data = JSON.parse(response.text)
 
