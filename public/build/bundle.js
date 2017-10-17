@@ -24081,6 +24081,12 @@ var Playlist = function (_Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
       console.log('componentDidUpdate: ' + JSON.stringify(this.props.podcasts.selected));
+      if (this.props.podcasts.selected == null) return;
+
+      // grab the feed url, then make request for rss feed
+      var feedUrl = this.props.podcasts.selected['feedUrl'];
+      if (feedUrl == null) return;
+      console.log('FEED URL: ' + feedUrl);
     }
   }, {
     key: 'render',

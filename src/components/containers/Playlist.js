@@ -109,6 +109,14 @@ class Playlist extends Component {
 
   componentDidUpdate(){
     console.log('componentDidUpdate: ' + JSON.stringify(this.props.podcasts.selected))
+    if (this.props.podcasts.selected == null)
+      return
+
+    // grab the feed url, then make request for rss feed
+    const feedUrl = this.props.podcasts.selected['feedUrl']
+    if (feedUrl == null)
+      return
+    console.log('FEED URL: ' + feedUrl)
   }
 
   render(){
