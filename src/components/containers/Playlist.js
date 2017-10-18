@@ -13,6 +13,13 @@ import actions from '../../actions'
 import APlayer from 'aplayer'
 
 class Playlist extends Component {
+  constructor(){
+    super()
+    this.state = {
+      trackList: []
+    }
+  }
+
   componentDidMount(){
     const feedUrl = this.props.podcast || []
 
@@ -119,8 +126,22 @@ class Playlist extends Component {
     APIClient
     .get('/feed', {url:feedUrl})
     .then((response) => {
-      // this.props.podcastsReceived(response)
-      console.log(JSON.stringify(response))
+      const podcast = response.podcast
+      const item = podcast.item
+
+      let list = []
+      item.forEach((track, i) => {
+        let trackInfo = {}
+        trackInfo['title'] = 'Track' + i
+        trackInfo['author'] = 'Test'
+        trackInfo['pic'] = 'http://devtest.qiniudn.com/Preparation.jpg'
+
+        let enclosure = track.enclosure[0]['$']
+        trackInfo['url'] = enclosure['url']
+        list.push(trackInfo)
+      })
+      console.log(JSON.stringify(list))
+      // console.log(JSON.stringify(podcast.item))
     })
     .catch((err) => {
       // alert(err)

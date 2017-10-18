@@ -23989,7 +23989,12 @@ var Playlist = function (_Component) {
   function Playlist() {
     _classCallCheck(this, Playlist);
 
-    return _possibleConstructorReturn(this, (Playlist.__proto__ || Object.getPrototypeOf(Playlist)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Playlist.__proto__ || Object.getPrototypeOf(Playlist)).call(this));
+
+    _this.state = {
+      trackList: []
+    };
+    return _this;
   }
 
   _createClass(Playlist, [{
@@ -24086,8 +24091,22 @@ var Playlist = function (_Component) {
       if (feedUrl == null) return;
       console.log('FEED URL: ' + feedUrl);
       _utils.APIClient.get('/feed', { url: feedUrl }).then(function (response) {
-        // this.props.podcastsReceived(response)
-        console.log(JSON.stringify(response));
+        var podcast = response.podcast;
+        var item = podcast.item;
+
+        var list = [];
+        item.forEach(function (track, i) {
+          var trackInfo = {};
+          trackInfo['title'] = 'Track' + i;
+          trackInfo['author'] = 'Test';
+          trackInfo['pic'] = 'http://devtest.qiniudn.com/Preparation.jpg';
+
+          var enclosure = track.enclosure[0]['$'];
+          trackInfo['url'] = enclosure['url'];
+          list.push(trackInfo);
+        });
+        console.log(JSON.stringify(list));
+        // console.log(JSON.stringify(podcast.item))
       }).catch(function (err) {
         // alert(err)
         console.log('ERROR: ' + JSON.stringify(response));
