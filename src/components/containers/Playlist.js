@@ -96,14 +96,13 @@ class Playlist extends Component {
     //    console.log(JSON.stringify(data.body))
     // })
     APIClient
-    // .get('http://localhost:3000/search/sports')
     .get(endpoint, null)
     .then((response) => {
       // console.log(JSON.stringify(response))
-      this.props.podcastsReceived(response.response)
+      this.props.podcastsReceived(response.results)
     })
     .catch((err) => {
-      alert(err)
+      console.log('ERROR: '+JSON.stringify(response))
     })
   }
 
@@ -117,6 +116,16 @@ class Playlist extends Component {
     if (feedUrl == null)
       return
     console.log('FEED URL: ' + feedUrl)
+    APIClient
+    .get('/feed', {url:feedUrl})
+    .then((response) => {
+      // this.props.podcastsReceived(response)
+      console.log(JSON.stringify(response))
+    })
+    .catch((err) => {
+      // alert(err)
+      console.log('ERROR: '+JSON.stringify(response))
+    })
   }
 
   render(){

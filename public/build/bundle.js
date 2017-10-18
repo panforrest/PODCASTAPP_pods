@@ -24068,13 +24068,11 @@ var Playlist = function (_Component) {
       //    }
       //    console.log(JSON.stringify(data.body))
       // })
-      _utils.APIClient
-      // .get('http://localhost:3000/search/sports')
-      .get(endpoint, null).then(function (response) {
+      _utils.APIClient.get(endpoint, null).then(function (response) {
         // console.log(JSON.stringify(response))
-        _this2.props.podcastsReceived(response.response);
+        _this2.props.podcastsReceived(response.results);
       }).catch(function (err) {
-        alert(err);
+        console.log('ERROR: ' + JSON.stringify(response));
       });
     }
   }, {
@@ -24087,6 +24085,13 @@ var Playlist = function (_Component) {
       var feedUrl = this.props.podcasts.selected['feedUrl'];
       if (feedUrl == null) return;
       console.log('FEED URL: ' + feedUrl);
+      _utils.APIClient.get('/feed', { url: feedUrl }).then(function (response) {
+        // this.props.podcastsReceived(response)
+        console.log(JSON.stringify(response));
+      }).catch(function (err) {
+        // alert(err)
+        console.log('ERROR: ' + JSON.stringify(response));
+      });
     }
   }, {
     key: 'render',
