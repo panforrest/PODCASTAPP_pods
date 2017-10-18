@@ -16,7 +16,7 @@ class Playlist extends Component {
   constructor(){
     super()
     this.state = {
-      trackList: []
+      trackList: null
     }
   }
 
@@ -122,6 +122,10 @@ class Playlist extends Component {
     const feedUrl = this.props.podcasts.selected['feedUrl']
     if (feedUrl == null)
       return
+
+    if (this.state.trackList != null)
+      return
+
     console.log('FEED URL: ' + feedUrl)
     APIClient
     .get('/feed', {url:feedUrl})
@@ -141,7 +145,10 @@ class Playlist extends Component {
         list.push(trackInfo)
       })
       console.log(JSON.stringify(list))
-      // console.log(JSON.stringify(podcast.item))
+      this.setState({
+        trackList: list
+      })
+
     })
     .catch((err) => {
       // alert(err)

@@ -23992,7 +23992,7 @@ var Playlist = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Playlist.__proto__ || Object.getPrototypeOf(Playlist)).call(this));
 
     _this.state = {
-      trackList: []
+      trackList: null
     };
     return _this;
   }
@@ -24083,12 +24083,17 @@ var Playlist = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
+      var _this3 = this;
+
       console.log('componentDidUpdate: ' + JSON.stringify(this.props.podcasts.selected));
       if (this.props.podcasts.selected == null) return;
 
       // grab the feed url, then make request for rss feed
       var feedUrl = this.props.podcasts.selected['feedUrl'];
       if (feedUrl == null) return;
+
+      if (this.state.trackList != null) return;
+
       console.log('FEED URL: ' + feedUrl);
       _utils.APIClient.get('/feed', { url: feedUrl }).then(function (response) {
         var podcast = response.podcast;
@@ -24106,7 +24111,9 @@ var Playlist = function (_Component) {
           list.push(trackInfo);
         });
         console.log(JSON.stringify(list));
-        // console.log(JSON.stringify(podcast.item))
+        _this3.setState({
+          trackList: list
+        });
       }).catch(function (err) {
         // alert(err)
         console.log('ERROR: ' + JSON.stringify(response));
