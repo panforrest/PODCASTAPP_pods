@@ -32,8 +32,15 @@ router.get('/', function(req, res, next) {
 
     var xml = response.text
     xml2js.parseString(xml, function(err, result){
-      // console.log(result)
-      res.json(result) 
+      var rss = result.rss
+      var channel = rss.channel
+      if (channel.length > 0){
+        channel = channel[0]
+      }
+      res.json({
+        confirmation: 'success',
+        podcast: channel
+      }) 
     })
 
     // res.send(response.text) 	
