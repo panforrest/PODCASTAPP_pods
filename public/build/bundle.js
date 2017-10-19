@@ -24104,8 +24104,8 @@ var Playlist = function (_Component) {
           console.log('TRACK: ' + JSON.stringify(track));
           var trackInfo = {};
           trackInfo['title'] = track.title[0];
-          trackInfo['author'] = 'Test';
-          trackInfo['pic'] = 'http://devtest.qiniudn.com/Preparation.jpg';
+          trackInfo['author'] = _this3.props.podcasts.selected.collectionName;
+          trackInfo['pic'] = _this3.props.podcasts.selected['artworkUrl600'];
 
           var enclosure = track.enclosure[0]['$'];
           trackInfo['url'] = enclosure['url'];

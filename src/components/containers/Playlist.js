@@ -129,8 +129,8 @@ class Playlist extends Component {
         console.log('TRACK: ' + JSON.stringify(track))
         let trackInfo = {}
         trackInfo['title'] = track.title[0]
-        trackInfo['author'] = 'Test'
-        trackInfo['pic'] = 'http://devtest.qiniudn.com/Preparation.jpg'
+        trackInfo['author'] = this.props.podcasts.selected.collectionName
+        trackInfo['pic'] = this.props.podcasts.selected['artworkUrl600']
 
         let enclosure = track.enclosure[0]['$']
         trackInfo['url'] = enclosure['url']
