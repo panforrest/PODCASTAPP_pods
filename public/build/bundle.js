@@ -24004,6 +24004,16 @@ var Playlist = function (_Component) {
   }, {
     key: 'initializePlayer',
     value: function initializePlayer(list) {
+      var sublist = [];
+      if (list.length > 3) {
+        // LIMIT SIZE OF LIST TO 3 
+        for (var i = 0; i < 3; i++) {
+          sublist.push(list[i]);
+        }
+      } else {
+        sublist = Object.assign([], list);
+      }
+
       var ap1 = new _aplayer2.default({
         element: document.getElementById('player1'),
         narrow: false,
@@ -24013,7 +24023,7 @@ var Playlist = function (_Component) {
         theme: '#e6d0b2',
         preload: 'metadata',
         mode: 'circulation',
-        music: list
+        music: sublist
       });
       // ap1.on('play', function () {
       //     console.log('play');
