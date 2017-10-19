@@ -24109,7 +24109,15 @@ var Playlist = function (_Component) {
         return;
       }
 
-      console.log('FEED URL: ' + feedUrl);
+      // RESET THE PLAYER:
+      if (this.state.player != null) {
+        this.state.player.pause();
+        this.setState({
+          player: null
+        });
+      }
+
+      // console.log('FEED URL: ' + feedUrl)
       _utils.APIClient.get('/feed', { url: feedUrl }).then(function (response) {
         var podcast = response.podcast;
         var item = podcast.item;
@@ -24128,13 +24136,9 @@ var Playlist = function (_Component) {
         });
 
         _this3.props.trackListReady(list);
-
-        // if (this.state.player == null){
-        //   this.initializePlayer(list)
-        // }
       }).catch(function (err) {
         // alert(err)
-        console.log('ERROR: ' + JSON.stringify(response));
+        console.log('ERROR: ' + error.message);
       });
     }
   }, {
@@ -32212,6 +32216,7 @@ exports.default = function () {
         }
       }
 
+      updated['trackList'] = null;
       updated['selected'] = action.podcast;
       return updated;
 

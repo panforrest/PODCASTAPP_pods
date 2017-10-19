@@ -123,9 +123,16 @@ class Playlist extends Component {
       
       return 
     }
-         
+        
+    // RESET THE PLAYER:
+    if (this.state.player != null){
+      this.state.player.pause()
+      this.setState({
+        player: null
+      })
+    }     
 
-    console.log('FEED URL: ' + feedUrl)
+    // console.log('FEED URL: ' + feedUrl)
     APIClient
     .get('/feed', {url:feedUrl})
     .then((response) => {
@@ -146,15 +153,10 @@ class Playlist extends Component {
       })
 
       this.props.trackListReady(list)
-
-      // if (this.state.player == null){
-      //   this.initializePlayer(list)
-      // }
-
     })
     .catch((err) => {
       // alert(err)
-      console.log('ERROR: '+JSON.stringify(response))
+      console.log('ERROR: '+error.message)
     })
   }
 

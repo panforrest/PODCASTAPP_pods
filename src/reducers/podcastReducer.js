@@ -22,6 +22,7 @@ export default (state=initialState, action) => {
         }
       }
 
+      updated['trackList'] = null
       updated['selected'] = action.podcast
       return updated 
 
