@@ -126,8 +126,9 @@ class Playlist extends Component {
 
       let list = []
       item.forEach((track, i) => {
+        console.log('TRACK: ' + JSON.stringify(track))
         let trackInfo = {}
-        trackInfo['title'] = 'Track' + i
+        trackInfo['title'] = track.title[0]
         trackInfo['author'] = 'Test'
         trackInfo['pic'] = 'http://devtest.qiniudn.com/Preparation.jpg'
 
@@ -140,7 +141,7 @@ class Playlist extends Component {
       //   trackList: list
       // })
 
-      console.log(JSON.stringify(list))
+      // console.log(JSON.stringify(list))
       if (this.state.player == null){
         this.initializePlayer(list)
       }

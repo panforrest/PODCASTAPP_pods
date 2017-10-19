@@ -24101,8 +24101,9 @@ var Playlist = function (_Component) {
 
         var list = [];
         item.forEach(function (track, i) {
+          console.log('TRACK: ' + JSON.stringify(track));
           var trackInfo = {};
-          trackInfo['title'] = 'Track' + i;
+          trackInfo['title'] = track.title[0];
           trackInfo['author'] = 'Test';
           trackInfo['pic'] = 'http://devtest.qiniudn.com/Preparation.jpg';
 
@@ -24115,7 +24116,7 @@ var Playlist = function (_Component) {
         //   trackList: list
         // })
 
-        console.log(JSON.stringify(list));
+        // console.log(JSON.stringify(list))
         if (_this3.state.player == null) {
           _this3.initializePlayer(list);
         }
