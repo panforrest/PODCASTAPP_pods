@@ -24002,8 +24002,8 @@ var Playlist = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {}
   }, {
-    key: 'initializedPlayer',
-    value: function initializedPlayer(list) {
+    key: 'initializePlayer',
+    value: function initializePlayer(list) {
       var ap1 = new _aplayer2.default({
         element: document.getElementById('player1'),
         narrow: false,
@@ -24037,6 +24037,7 @@ var Playlist = function (_Component) {
       //     console.log('error');
       // }); 
       this.setState({
+        trackList: list,
         player: ap1
       });
     }
@@ -24099,14 +24100,15 @@ var Playlist = function (_Component) {
           trackInfo['url'] = enclosure['url'];
           list.push(trackInfo);
         });
+
+        // this.setState({
+        //   trackList: list
+        // })
+
         console.log(JSON.stringify(list));
         if (_this3.state.player == null) {
-          _this3.initializedPlayer(list);
+          _this3.initializePlayer(list);
         }
-
-        _this3.setState({
-          trackList: list
-        });
       }).catch(function (err) {
         // alert(err)
         console.log('ERROR: ' + JSON.stringify(response));

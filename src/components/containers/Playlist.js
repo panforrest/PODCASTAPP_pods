@@ -25,7 +25,7 @@ class Playlist extends Component {
  
   }
 
-  initializedPlayer(list){
+  initializePlayer(list){
     var ap1 = new APlayer({
         element: document.getElementById('player1'),
         narrow: false,
@@ -59,6 +59,7 @@ class Playlist extends Component {
     //     console.log('error');
     // }); 
     this.setState({
+      trackList: list,
       player: ap1
     })
   }
@@ -124,14 +125,15 @@ class Playlist extends Component {
         trackInfo['url'] = enclosure['url']
         list.push(trackInfo)
       })
+
+      // this.setState({
+      //   trackList: list
+      // })
+
       console.log(JSON.stringify(list))
       if (this.state.player == null){
-        this.initializedPlayer(list)
+        this.initializePlayer(list)
       }
-
-      this.setState({
-        trackList: list
-      })
 
     })
     .catch((err) => {
