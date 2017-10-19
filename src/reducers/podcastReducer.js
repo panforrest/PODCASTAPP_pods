@@ -2,7 +2,8 @@ import constants from '../constants'
 
 var initialState = {
   all: null,
-  selected: null
+  selected: null,
+  trackList: null
 }
 
 export default (state=initialState, action) => {
@@ -23,6 +24,11 @@ export default (state=initialState, action) => {
 
       updated['selected'] = action.podcast
       return updated 
+
+    case constants.TRACKLIST_REDAY:
+      console.log('TRACKLIST_REDAY: ')
+      updated['trackList'] = action.list
+      return updated         
 
     default:
       return state

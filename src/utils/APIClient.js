@@ -1,5 +1,6 @@
 import superagent from 'superagent'
-import Promise from 'bluebird'
+// import Promise from 'bluebird'
+import bluebird from 'bluebird'
 
 export default {
 

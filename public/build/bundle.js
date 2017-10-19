@@ -1999,6 +1999,13 @@ exports.default = {
       type: _constants2.default.PODCAST_SELECTED,
       podcast: podcast
     };
+  },
+
+  trackListReady: function trackListReady(list) {
+    return {
+      type: _constants2.default.TRACKLIST_REDAY,
+      list: list
+    };
   }
 };
 
@@ -2016,7 +2023,8 @@ exports.default = {
 
   SEARCH_PODCASTS: 'SEARCH_PODCASTS',
   PODCASTS_RECEIVED: 'PODCASTS_RECEIVED',
-  PODCAST_SELECTED: 'PODCAST_SELECTED'
+  PODCAST_SELECTED: 'PODCAST_SELECTED',
+  TRACKLIST_REDAY: 'TRACKLIST_REDAY'
 
 };
 
@@ -23992,7 +24000,7 @@ var Playlist = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Playlist.__proto__ || Object.getPrototypeOf(Playlist)).call(this));
 
     _this.state = {
-      trackList: null,
+      // trackList: null,
       player: null
     };
     return _this;
@@ -24092,7 +24100,14 @@ var Playlist = function (_Component) {
       var feedUrl = this.props.podcasts.selected['feedUrl'];
       if (feedUrl == null) return;
 
-      if (this.state.trackList != null) return;
+      // if (this.state.trackList != null)
+      //   return
+
+      if (this.props.podcasts.trackList != null) {
+        if (this.state.player == null) this.initializePlayer(this.props.podcasts.trackList);
+
+        return;
+      }
 
       console.log('FEED URL: ' + feedUrl);
       _utils.APIClient.get('/feed', { url: feedUrl }).then(function (response) {
@@ -24112,14 +24127,11 @@ var Playlist = function (_Component) {
           list.push(trackInfo);
         });
 
-        // this.setState({
-        //   trackList: list
-        // })
+        _this3.props.trackListReady(list);
 
-        // console.log(JSON.stringify(list))
-        if (_this3.state.player == null) {
-          _this3.initializePlayer(list);
-        }
+        // if (this.state.player == null){
+        //   this.initializePlayer(list)
+        // }
       }).catch(function (err) {
         // alert(err)
         console.log('ERROR: ' + JSON.stringify(response));
@@ -24159,6 +24171,9 @@ var dispatchToProps = function dispatchToProps(dispatch) {
   return {
     podcastsReceived: function podcastsReceived(podcasts) {
       return dispatch(_actions2.default.podcastsReceived(podcasts));
+    },
+    trackListReady: function trackListReady(list) {
+      return dispatch(_actions2.default.trackListReady(list));
     }
   };
 };
@@ -24209,7 +24224,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
 
   get: function get(endpoint, params) {
-    return new _bluebird2.default(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
       _superagent2.default.get(endpoint).query(params).set('Accept', 'application/json').end(function (err, response) {
         if (err) {
           reject(err);
@@ -24221,6 +24236,7 @@ exports.default = {
     });
   }
 };
+// import Promise from 'bluebird'
 
 /***/ }),
 /* 85 */
@@ -32172,7 +32188,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var initialState = {
   all: null,
-  selected: null
+  selected: null,
+  trackList: null
 };
 
 exports.default = function () {
@@ -32196,6 +32213,11 @@ exports.default = function () {
       }
 
       updated['selected'] = action.podcast;
+      return updated;
+
+    case _constants2.default.TRACKLIST_REDAY:
+      console.log('TRACKLIST_REDAY: ');
+      updated['trackList'] = action.list;
       return updated;
 
     default:
