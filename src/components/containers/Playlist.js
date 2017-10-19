@@ -16,13 +16,16 @@ class Playlist extends Component {
   constructor(){
     super()
     this.state = {
-      trackList: null
+      trackList: null,
+      player: null
     }
   }
 
   componentDidMount(){
-    const feedUrl = this.props.podcast || []
+ 
+  }
 
+  initializedPlayer(list){
     var ap1 = new APlayer({
         element: document.getElementById('player1'),
         narrow: false,
@@ -32,33 +35,7 @@ class Playlist extends Component {
         theme: '#e6d0b2',
         preload: 'metadata',
         mode: 'circulation',
-        music: [
-           {
-            title: 'Preparation',
-            author: 'Hans Zimmer/Richard Harvey',
-            url: 'http://devtest.qiniudn.com/Preparation.mp3',
-            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-          },
-          {
-            title: 'Preparation',
-            author: 'Hans Zimmer/Richard Harvey',
-            url: 'http://devtest.qiniudn.com/Preparation.mp3',
-            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-          },
-          {
-            title: 'Preparation',
-            author: 'Hans Zimmer/Richard Harvey',
-            url: 'http://devtest.qiniudn.com/Preparation.mp3',
-            pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-          },
-          // {
-          //   title: 'Preparation',
-          //   author: 'Hans Zimmer/Richard Harvey',
-          //   url: feedUrl,
-          //   pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-          // }
-        ]
-
+        music: list
     });
     // ap1.on('play', function () {
     //     console.log('play');
@@ -80,7 +57,10 @@ class Playlist extends Component {
     // });
     // ap1.on('error', function () {
     //     console.log('error');
-    // });    
+    // }); 
+    this.setState({
+      player: ap1
+    })
   }
 
   searchPodcasts(event){
@@ -145,6 +125,10 @@ class Playlist extends Component {
         list.push(trackInfo)
       })
       console.log(JSON.stringify(list))
+      if (this.state.player == null){
+        this.initializedPlayer(list)
+      }
+
       this.setState({
         trackList: list
       })

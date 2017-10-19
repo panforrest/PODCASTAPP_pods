@@ -23992,16 +23992,18 @@ var Playlist = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Playlist.__proto__ || Object.getPrototypeOf(Playlist)).call(this));
 
     _this.state = {
-      trackList: null
+      trackList: null,
+      player: null
     };
     return _this;
   }
 
   _createClass(Playlist, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {
-      var feedUrl = this.props.podcast || [];
-
+    value: function componentDidMount() {}
+  }, {
+    key: 'initializedPlayer',
+    value: function initializedPlayer(list) {
       var ap1 = new _aplayer2.default({
         element: document.getElementById('player1'),
         narrow: false,
@@ -24011,23 +24013,7 @@ var Playlist = function (_Component) {
         theme: '#e6d0b2',
         preload: 'metadata',
         mode: 'circulation',
-        music: [{
-          title: 'Preparation',
-          author: 'Hans Zimmer/Richard Harvey',
-          url: 'http://devtest.qiniudn.com/Preparation.mp3',
-          pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-        }, {
-          title: 'Preparation',
-          author: 'Hans Zimmer/Richard Harvey',
-          url: 'http://devtest.qiniudn.com/Preparation.mp3',
-          pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-        }, {
-          title: 'Preparation',
-          author: 'Hans Zimmer/Richard Harvey',
-          url: 'http://devtest.qiniudn.com/Preparation.mp3',
-          pic: 'http://devtest.qiniudn.com/Preparation.jpg'
-        }]
-
+        music: list
       });
       // ap1.on('play', function () {
       //     console.log('play');
@@ -24049,7 +24035,10 @@ var Playlist = function (_Component) {
       // });
       // ap1.on('error', function () {
       //     console.log('error');
-      // });    
+      // }); 
+      this.setState({
+        player: ap1
+      });
     }
   }, {
     key: 'searchPodcasts',
@@ -24111,6 +24100,10 @@ var Playlist = function (_Component) {
           list.push(trackInfo);
         });
         console.log(JSON.stringify(list));
+        if (_this3.state.player == null) {
+          _this3.initializedPlayer(list);
+        }
+
         _this3.setState({
           trackList: list
         });
